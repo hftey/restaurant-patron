@@ -1,0 +1,8 @@
+{
+  "name": "Restaurant Patron",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "894fa613"
+}
