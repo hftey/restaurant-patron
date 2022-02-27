@@ -1,7 +1,10 @@
 {
   "name": "Restaurant Patron",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {
+      "enabled": false
+    },
+    "cordova": {}
   },
   "type": "angular",
   "id": "894fa613"

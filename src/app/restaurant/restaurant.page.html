@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+      <ion-buttons slot="start">
+          <ion-button (click)="Back()">
+              <ion-icon name="chevron-back-outline"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+      <ion-title style="padding: 0px;">{{ restaurant.name }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+
+    <ion-modal trigger="openQiRestaurant" [initialBreakpoint]="0.75" [breakpoints]="[0, 0.5, 1]">
+        <ng-template>
+            <app-qi-info></app-qi-info>
+        </ng-template>
+    </ion-modal>
+
+  <div style="padding: 10px;">
+      <ion-icon name="storefront-outline"></ion-icon> {{ restaurant.address }}<BR>
+      <ion-icon name="call-outline"></ion-icon> {{ restaurant.phone_number }}<BR>
+      <div class="qi ultimate"><img class="qi-crown" src="/assets/icon/crown.png"></div>&nbsp; <div style="display: inline-block;" [innerHTML]="displayQiUser()"></div> <ion-icon style='color: blue; font-size: 16px;' name="information-circle"  id="openQiRestaurant"></ion-icon>
+
+  </div>
+    <ion-list *ngFor="let experience of experiences">
+        <ion-item>
+            <a style="margin-right: 10px;" href="/experience_by_id/{{ experience.place_id }}/{{ experience.id }}/1">
+            <ion-avatar slot="start">
+                <img src="{{ API_SERVER_URL }}/api/restaurant/display_experience_photo/{{ experience.experiences_photos_id }}/1" />
+            </ion-avatar>
+            </a>
+            <ion-label>
+
+                <div style="display: inline-block; margin: 10px 0px 0px 5px" [innerHTML]="displayUserQiRanking(experience.total_points)"></div>
+                &nbsp;<B> <a href="/experience_by_id/{{ experience.place_id }}/{{ experience.id }}/1">{{ experience.creator_name }}</a></B><BR>
+
+                <ngb-rating [(rate)]="experience.rating" [max]="10" (rateChange)="onRateChange($event)" [readonly]="true">
+                    <ng-template let-fill="fill" let-index="index">
+                        <span class="star-small rating{{experience.rating}}" [class.filled]="fill === 100">&#9733;</span>
+                    </ng-template>
+                </ngb-rating><BR>
+                    <small>{{ experience.comment}}</small>
+                <div style="margin: 5px;">
+                    <small>{{ experience.updated_at | date:'medium' }}</small>
+                    <div style="float: right"><small></small> <div class="qi">{{ experience.points}}</div></div>
+                </div>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+
+</ion-content>

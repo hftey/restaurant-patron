@@ -6,11 +6,12 @@ import { FormsModule } from '@angular/forms';
 import { Tab3Page } from './tab3.page';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 
+import { NgbRatingModule} from '@ng-bootstrap/ng-bootstrap';
 import { Tab3PageRoutingModule } from './tab3-routing.module';
 
 @NgModule({
   imports: [
-    IonicModule,
+    IonicModule,NgbRatingModule,
     CommonModule,
     FormsModule,
     ExploreContainerComponentModule,

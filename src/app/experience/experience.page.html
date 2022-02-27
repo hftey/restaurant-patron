@@ -1,0 +1,92 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-button (click)="Back()">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Share Experience</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-modal trigger="openModal" [initialBreakpoint]="0.75" [breakpoints]="[0, 0.5, 1]">
+        <ng-template>
+            <app-qi-info></app-qi-info>
+        </ng-template>
+    </ion-modal>
+
+
+  <div style="padding: 10px;">
+
+    <h2>{{ restaurant.name }}</h2>
+    <ion-icon name="storefront-outline"></ion-icon> {{ restaurant.address }}<BR>
+    <ion-icon name="call-outline"></ion-icon> {{ restaurant.phone_number }}<BR>
+      <div class="qi ultimate"><img class="qi-crown" src="/assets/icon/crown.png"></div>&nbsp; {{ displayQiUser() }} <ion-icon style='color: blue; font-size: 16px;' name="information-circle"  id="openModal"></ion-icon>
+      <HR>
+    <form>
+
+      <div class="qi"></div> earned: {{ experience.points }}/10  <ion-icon *ngIf="experience.points == 10" style="color: green" name="checkbox"></ion-icon>  <BR>
+      <h3 style="display: inline-block; margin-right: 5px;"><ion-icon name="star-half-outline"></ion-icon> Rate Your Experience</h3> <div style="display: inline-block" *ngIf="starRated">({{ starRating }} / 10)  <div class="qi"></div><div class="qi"></div><div class="qi"></div>&nbsp;<ion-icon style="color: green" name="checkbox"></ion-icon> </div>
+      <ion-row>
+
+        <ngb-rating [(rate)]="starRating" [max]="10" (click)="onRateChange($event)" [readonly]="experience.done">
+          <ng-template let-fill="fill" let-index="index">
+            <span class="star rating{{starRating}}" [class.filled]="fill === 100">&#9733;</span>
+          </ng-template>
+        </ngb-rating>
+
+      </ion-row>
+
+      <HR class="thin">
+      <h3 style="display: inline-block; margin-right: 5px;"><ion-icon name="image-outline"></ion-icon> Share Your Photos</h3> <div style="display: inline-block; margin-right: 5px;">({{ countPhoto() }} / 8)</div>
+        <div id="qiPhotoPartial" *ngIf="qiPhotoPartial"><div class="qi"></div><div class="qi"></div></div>
+        <div id="qiPhotoComplete" *ngIf="qiPhotoComplete"><div class="qi"></div><div class="qi"></div><div class="qi"></div><div class="qi"></div>&nbsp;<ion-icon style="color: green" name="checkbox"></ion-icon></div>
+      <BR>
+      <a *ngIf="!experience.done" (click)="fileInput.click()"><i class="material-icons" style="color: rgb(56, 128, 255)">add_box</i></a>
+      <div style="background-color: rgba(56, 128, 255, 0.2); border-radius: 2px;">
+        <input #fileInput style='display: none' type="file" accept="image/*" multiple (change)="selectFiles($event)" />
+        <ion-row>
+          <ion-col size="3" *ngFor='let preview of previews; let i = index' [attr.data-index]="i" class="box_industries">
+            <div class="img-preview" style="position: relative;">
+              <div *ngIf="!preview.img" style="widht: 100%; height: 100%; text-align: center; vertical-align: middle; opacity: 30%">
+                <img src="/assets/icon/photoicon.png">
+              </div>
+              <div style="position:absolute; top:0px; background-color: white; height: 100%; opacity: 50%; z-index:100; width: 100%" [ngStyle]="{'left': preview.progress+'%'}"></div>
+              <img *ngIf="preview.img" [src]="preview.img" class="preview" [ngClass]="classImgSize(preview.width, preview.height)" (click)="viewImage(preview.img_large)">
+            </div>
+
+            <div *ngIf="preview.img && !experience.done" style="position: absolute; top: 10px; left: 10px; z-index:1000;" (click)="onDeletePhoto(i)">
+              <button style="background: rgba(255,255,255,0.8); padding: 0px 2px 0px;" ><i class="material-icons" style="color: #6c6c6c;">delete</i></button>
+            </div>
+
+          </ion-col>
+        </ion-row>
+      </div>
+
+      <HR class="thin">
+      <h3 style="display: inline-block; margin-right: 5px;"><ion-icon name="chatbox-ellipses-outline"></ion-icon> Share Your Thoughts</h3> <div id="qiComments" *ngIf="qiComments"><div class="qi"></div><div class="qi"></div><div class="qi"></div>&nbsp;<ion-icon style="color: green" name="checkbox"></ion-icon></div>
+      <ion-row>
+        <mat-form-field appearance="fill" style="width:100%">
+          <mat-label>about your experience at {{ restaurant.name }}</mat-label>
+          <textarea matInput rows="5" [formControl]="comment" [readonly]="experience.done == 1" (input)="onCountPoints()"></textarea>
+        </mat-form-field>
+      </ion-row>
+
+      <ion-row *ngIf="!experience.done">
+
+        <button mat-raised-button color="primary" (click)="onUpdateExperience()">Update</button>
+        <button *ngIf="experience.id" mat-raised-button color="primary" (click)="onDoneExperience()">Done</button>
+        <small>Continue to <B>update</B> your experience and click <B>done</B> to complete.</small><BR>
+        <small>Your update will automatically set to complete within 24 hours.</small>
+      </ion-row>
+      <ion-row *ngIf="experience.done">
+        <div>
+          Last updated:<BR>{{ experience.updated_at | date:'medium' }}<BR>
+          by:  <div style="display: inline-block;" [innerHTML]="displayUserQiRanking(experience.total_points)"></div> {{ experience.creator_name }}
+        </div>
+      </ion-row>
+    </form>
+  </div>
+</ion-content>

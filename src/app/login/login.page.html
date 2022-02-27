@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Restaurant Patron</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+
+  <div id="map-login"></div>
+
+
+  <div style="padding: 5px;display: inline; position: absolute; top: 5vh">
+  <BR><BR>
+  <form #formLogin="ngForm" class="form-inline" [formGroup]="frmGroupLogin"  (ngSubmit)="clickLogin()"  style="height: 100%;">
+    <BR><BR>
+    <div style="width:85vw; text-align: center; background-color: rgba(255,255,255,0.85); margin: 0px 20px; padding: 10px; height: 80%; border-radius: 10px; box-shadow: 3px 5px 15px 5px #000000;">
+
+    <ion-item lines="full">
+      <ion-label position="floating">Email</ion-label>
+      <ion-input name="email" formControlName="email" type="text" required></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Password</ion-label>
+      <ion-input name="password" formControlName="password" type="password" required></ion-input>
+    </ion-item>
+
+    <ion-row>
+      <ion-col>
+        <ion-button type="submit" color="primary" expand="block"> Login </ion-button>
+        <a href="/register">Register</a>
+        <!--<a [routerLink]="['/forgot-password']" class="small-text">Forgot Password?</a>-->
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+          OR
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-button type="submit" color="primary" expand="block"> Facebook </ion-button>
+        <!--<a [routerLink]="['/forgot-password']" class="small-text">Forgot Password?</a>-->
+      </ion-col>
+    </ion-row>
+
+    <div style="padding: 10px;">
+      <ul>
+        <li>Share your restaurant experiences.</li>
+        <li>Gain points and status.</li>
+        <li>Interact with other patrons.</li>
+        <li>Have fun exploring.</li>
+      </ul>
+    </div>
+
+
+    </div>
+
+
+
+  </form>
+  </div>
+
+
+</ion-content>

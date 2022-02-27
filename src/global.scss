@@ -24,3 +24,174 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+
+:root {
+  --ion-color-secondary: #006600;
+  --ion-color-secondary-rgb: 0, 102, 0;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+  --ion-color-secondary-shade: #005a00;
+  --ion-color-secondary-tint: #1a751a;
+}
+
+.qi {
+  background-color: white;
+  border-radius: 15px;
+  padding: 0px 3px;
+  display: inline-block;
+  font-size: 12px;
+  color: #3a3a3a;
+  border: gray solid 1px;
+  height: 22px;
+  vertical-align: middle;
+  box-shadow: 2px 2px 5px gray;
+  line-height: 20px !important;
+  position: relative;
+}
+
+.qi.ultimate {
+  background-color: #ffd700 !important;
+}
+
+.qi.supreme {
+  background-color: #ffc000 !important;
+}
+
+.qi.veteran {
+  background-color: #acb5fc !important;
+}
+
+.qi.inspiring {
+  background-color: #b9b0e4 !important;
+}
+
+.qi.novice {
+  background-color: #b6d7de !important;
+}
+
+.qi.newbie {
+  background-color: #c5e0b3 !important;
+}
+
+.qi::after{
+  content: '気';
+}
+
+#qiPhotoPartial, #qiPhotoComplete, #qiComments {
+  display: inline-block;
+}
+
+.qi-crown{
+  position: absolute;
+  top: -7px;
+  left: -7px;
+  width: 25px;
+  z-index: 100;
+  transform: rotate(-35deg);
+}
+
+H2, H3 {
+  margin-bottom: 0px !important
+}
+
+ion-avatar {
+  width: 80px;
+  height: 80px;
+}
+
+ion-avatar img{
+  border-radius: 3px;
+}
+
+button {
+  margin-right: 10px !important;
+}
+
+.img-preview{
+  justify-content: center;
+  max-height: 23vw;
+  height: 23vw;
+  width: 23vw;
+  overflow: hidden;
+  border-radius: 5px;
+  border: solid 1px silver;
+}
+
+.img-preview .img_square{
+  width: 100%;
+  position: relative;
+}
+
+.img-preview .img_por{
+  width: 100%;
+  position: relative;
+  top: -5vw;
+}
+
+.img-preview .img_hor{
+  height: 23vw;
+  position: relative;
+  max-width: inherit !important;
+  left: -5vw;
+}
+
+.mat-form-field-flex{
+  background-color: rgba(56, 128, 255, 0.2) !important;
+}
+
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+
+HR.thin{
+  margin: 5px;
+}
+
+.star {
+  font-size: 2.0rem;
+  color: rgba(56, 128, 255, 0.2);
+}
+.star-small {
+  font-size: 1.0rem;
+  color: rgba(56, 128, 255, 0.2);
+}
+.filled {
+  color: #ffb421;
+}
+.filled.rating1{
+  color: red;
+}
+.filled.rating2{
+  color: #ff461d;
+}
+.filled.rating3{
+  color: #ff5125;
+}
+.filled.rating4{
+  color: #ff6e30;
+}
+.filled.rating5{
+  color: #ff893b;
+}
+.filled.rating6{
+  color: #ffaf44;
+}
+.filled.rating7{
+  color: #ffbc48;
+}
+.filled.rating8{
+  color: #ffba37;
+}
+.filled.rating9{
+  color: #ffc824;
+}
+.filled.rating10{
+  color: #ffd50e;
+}
