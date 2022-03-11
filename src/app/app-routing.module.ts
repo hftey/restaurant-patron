@@ -20,6 +20,10 @@ const routes: Routes = [
     path: 'dashboard',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
+    {
+        path: 'experience_explore/:place_id/:from_restaurant',
+        loadChildren: () => import('./experience/experience.module').then( m => m.ExperiencePageModule)
+    },
   {
     path: 'experience/:place_id',
     loadChildren: () => import('./experience/experience.module').then( m => m.ExperiencePageModule)
@@ -35,13 +39,18 @@ const routes: Routes = [
   {
     path: 'restaurant/:place_id',
     loadChildren: () => import('./restaurant/restaurant.module').then( m => m.RestaurantPageModule)
-  },  {
+  },
+  {
     path: 'register',
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
   },
   {
     path: 'qi-info',
     loadChildren: () => import('./qi-info/qi-info.module').then( m => m.QiInfoPageModule)
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
   }
 
 

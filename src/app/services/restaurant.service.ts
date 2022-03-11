@@ -28,6 +28,14 @@ export class RestaurantService {
         )
     }
 
+    get_user_top_qi(user_id, type): Observable<any> {
+        return this.httpClient.get(`${API_SERVER_URL}/api/restaurant/get_user_top_qi/${user_id}/${type}`).pipe(
+            tap(async (res: any) => {
+                console.log(res);
+            })
+        )
+    }
+
     get_qi_ultimate(place_id): Observable<any> {
         return this.httpClient.get(`${API_SERVER_URL}/api/restaurant/get_qi_ultimate/${place_id}`).pipe(
             tap(async (res: any) => {
@@ -77,8 +85,8 @@ export class RestaurantService {
         )
     }
 
-    get_experience_restaurant(place_id): Observable<any> {
-        return this.httpClient.get(`${API_SERVER_URL}/api/restaurant/get_experience_restaurant/${place_id}`, ).pipe(
+    get_experience_restaurant(place_id, user_id = null): Observable<any> {
+        return this.httpClient.get(`${API_SERVER_URL}/api/restaurant/get_experience_restaurant/${place_id}/${user_id}`, ).pipe(
             tap(async (res: any) => {
                 console.log(res);
             })

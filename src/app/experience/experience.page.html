@@ -24,6 +24,7 @@
     <ion-icon name="storefront-outline"></ion-icon> {{ restaurant.address }}<BR>
     <ion-icon name="call-outline"></ion-icon> {{ restaurant.phone_number }}<BR>
       <div class="qi ultimate"><img class="qi-crown" src="/assets/icon/crown.png"></div>&nbsp; {{ displayQiUser() }} <ion-icon style='color: blue; font-size: 16px;' name="information-circle"  id="openModal"></ion-icon>
+      <div *ngIf="displayPointsToUltimate() != 0">Get <B>{{ displayPointsToUltimate() }}</B> more points to claim the crown!</div>
       <HR>
     <form>
 

@@ -21,6 +21,9 @@
       <ion-icon name="storefront-outline"></ion-icon> {{ restaurant.address }}<BR>
       <ion-icon name="call-outline"></ion-icon> {{ restaurant.phone_number }}<BR>
       <div class="qi ultimate"><img class="qi-crown" src="/assets/icon/crown.png"></div>&nbsp; <div style="display: inline-block;" [innerHTML]="displayQiUser()"></div> <ion-icon style='color: blue; font-size: 16px;' name="information-circle"  id="openQiRestaurant"></ion-icon>
+      <div *ngIf="displayPointsToUltimate() != 0">Get <B>{{ displayPointsToUltimate() }}</B> more points to claim the crown!</div>
+      <button mat-raised-button color="primary" (click)="share_experience()">Share Experience</button>
+      <h2>Recent Experience</h2>
 
   </div>
     <ion-list *ngFor="let experience of experiences">

@@ -21,6 +21,9 @@ export class Tab3Page implements OnInit{
 
     ngOnInit() {
 
+    }
+
+    ngAfterViewInit() {
         this.storage.get('User').then((user)=> {
             if (user) {
                 this.user = user;
@@ -31,5 +34,7 @@ export class Tab3Page implements OnInit{
         })
 
     }
+
+
 
 }

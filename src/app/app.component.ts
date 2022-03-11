@@ -7,15 +7,22 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-    public pages: any = [{
-        title: 'Profile',
-        icon: 'person-circle',
-        url: '/profile'
-    },{
-        title: 'Logout',
-        icon: 'log-out',
-        url: '/logout'
-    }];
+    public pages: any = [
+        {
+            title: 'Dashboard',
+            icon: 'home-outline',
+            url: '/dashboard'
+        },
+        {
+            title: 'Profile',
+            icon: 'person-circle',
+            url: '/profile'
+        },{
+            title: 'Logout',
+            icon: 'log-out',
+            url: '/logout'
+        }
+    ];
 
   constructor() {}
 

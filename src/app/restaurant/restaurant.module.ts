@@ -7,11 +7,12 @@ import { IonicModule } from '@ionic/angular';
 import { RestaurantPageRoutingModule } from './restaurant-routing.module';
 import { NgbRatingModule} from '@ng-bootstrap/ng-bootstrap';
 import { RestaurantPage } from './restaurant.page';
-import {QiInfoPage} from "../qi-info/qi-info.page"
+import {QiInfoPage} from "../qi-info/qi-info.page";
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   imports: [
-    CommonModule,NgbRatingModule,
+    CommonModule,NgbRatingModule,MatButtonModule,
     FormsModule,
     IonicModule,
     RestaurantPageRoutingModule

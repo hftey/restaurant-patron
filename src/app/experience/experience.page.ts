@@ -48,6 +48,9 @@ export class ExperiencePage implements OnInit {
     progressInfos: any[] = [];
     message: string[] = [];
 
+    experiences_user: any[];
+    user_points: number;
+
     qiPhotoPartial: boolean;
     qiPhotoComplete: boolean;
     qiComments: boolean;
@@ -181,6 +184,7 @@ export class ExperiencePage implements OnInit {
       this.starRating = 0;
       this.starRated = false;
       this.comment.setValue('');
+      this.user_points = 0;
 
       this.qiPhotoPartial = false;
       this.qiPhotoComplete = false;
@@ -188,12 +192,14 @@ export class ExperiencePage implements OnInit {
 
 
       this.fileSelectTrigger.subject.subscribe( msg => {
-          console.log('trigger', this.previews)
           this.onCountPoints();
       })
 
       this.restaurantService.get_qi_ultimate(this.place_id).subscribe( qi_user =>{
-          this.qi_user = qi_user;
+          if (qi_user){
+              this.qi_user = qi_user;
+
+          }
       })
 
       this.storage.get('User').then((user)=>{
@@ -208,6 +214,16 @@ export class ExperiencePage implements OnInit {
                       this.initExperience(experience);
                   });
 
+                  this.restaurantService.get_experience_restaurant(this.place_id, user.id).subscribe(experiences_user => {
+                      this.experiences_user = experiences_user;
+                      console.log('experiences_user', this.experiences_user);
+                      this.experiences_user.forEach(exp => {
+
+                          this.user_points += parseInt(exp.points);
+                      })
+
+                  })
+
               }
           }else{
               this.router.navigate(['login']);
@@ -217,6 +233,15 @@ export class ExperiencePage implements OnInit {
 
 
   }
+
+    displayPointsToUltimate(){
+
+        if (this.qi_user.highest_points <= 10){
+            return (11 - this.user_points);
+        }else{
+            return (this.qi_user.highest_points - this.user_points);
+        }
+    }
 
   onCountPoints(){
     this.experience.points = 0;
